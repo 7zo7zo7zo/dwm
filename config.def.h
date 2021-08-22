@@ -69,7 +69,7 @@ static Key keys[] = {
 	//{ MODKEY,                       XK_Down,   spawn,          SHCMD("amixer -qM set Master 2%- unmute") },
 	//{ MODKEY,                       XK_Up,     spawn,          SHCMD("amixer -qM set Master 2%+ unmute") },
 	{ MODKEY,                       XK_Down,   spawn,          SHCMD("pamixer -u -d 5") },
-	{ MODKEY,                       XK_Up,     spawn,          SHCMD("panuxer -u -i 5") },
+	{ MODKEY,                       XK_Up,     spawn,          SHCMD("pamixer -u -i 5") },
 	{ MODKEY,                       XK_Delete, spawn,          {.v = powermenu } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
