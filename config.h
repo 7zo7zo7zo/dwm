@@ -66,8 +66,6 @@ static const char *mutevol[]  = { "/usr/bin/pactl", "set-sink-mute",   "0", "tog
 static const char *medplaypausecmd[] = { "playerctl", "play-pause", NULL };
 static const char *mednextcmd[] = { "playerctl", "next", NULL };
 static const char *medprevcmd[] = { "playerctl", "previous", NULL };
-static const char *brightness_up[] = { "sudo", "brightness.sh", "$(ls /sys/class/backlight)", "10+", NULL };
-static const char *brightness_down[] = { "sudo", "brightness.sh", "$(ls /sys/class/backlight)", "10-", NULL };
 
 #include <X11/XF86keysym.h>
 
@@ -82,8 +80,8 @@ static Key keys[] = {
 	{ 0, XF86XK_AudioPlay,                     spawn,          {.v = medplaypausecmd } },
 	{ 0, XF86XK_AudioNext,                     spawn,          {.v = mednextcmd } },
 	{ 0, XF86XK_AudioPrev,                     spawn,          {.v = medprevcmd } },
-	{ 0, XF86XK_MonBrightnessUp,               spawn,          {.v = brightness_up } },
-	{ 0, XF86XK_MonBrightnessDown,             spawn,          {.v = brightness_down } },
+	{ 0, XF86XK_MonBrightnessUp,               spawn,          SHCMD("sudo brightness.sh $(ls /sys/class/backlight) 10+") },
+	{ 0, XF86XK_MonBrightnessDown,             spawn,          SHCMD("sudo brightness.sh $(ls /sys/class/backlight) 10-") },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
