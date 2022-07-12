@@ -66,8 +66,8 @@ static const char *mutevol[]  = { "/usr/bin/pactl", "set-sink-mute",   "0", "tog
 static const char *medplaypausecmd[] = { "playerctl", "play-pause", NULL };
 static const char *mednextcmd[] = { "playerctl", "next", NULL };
 static const char *medprevcmd[] = { "playerctl", "previous", NULL };
-static const char *brightness_up[]  =   { "brightness.sh", "$(ls /sys/class/backlight)", "10+", NULL };
-static const char *brightness_down[]  = { "brightness.sh", "$(ls /sys/class/backlight)", "10-", NULL };
+static const char *brightness_up[]  =   { "sudo", "brightness.sh", "$(ls /sys/class/backlight)", "10+", NULL };
+static const char *brightness_down[]  = { "sudo", "brightness.sh", "$(ls /sys/class/backlight)", "10-", NULL };
 
 #include <X11/XF86keysym.h>
 
