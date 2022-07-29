@@ -73,7 +73,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_w,      spawn,          {.v = web } },
+	//{ MODKEY,                       XK_w,      spawn,          {.v = web } },
 	{ MODKEY,                       XK_w,      spawn,          SHCMD("$BROWSER") },
 	//{ 0, XF86XK_AudioRaiseVolume,              spawn,          {.v = upvol   } },
 	//{ 0, XF86XK_AudioLowerVolume,              spawn,          {.v = downvol } },
