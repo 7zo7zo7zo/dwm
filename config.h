@@ -59,10 +59,10 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *web[]      = { "firefox", NULL };
-static const char *upvol[]    = { "/usr/bin/pactl", "set-sink-volume", "0", "+5%",     NULL };
-static const char *downvol[]  = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%",     NULL };
-static const char *mutevol[]  = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
+//static const char *web[]      = { "firefox", NULL };
+//static const char *upvol[]    = { "pactl", "set-sink-volume", "0", "+5%",     NULL };
+//static const char *downvol[]  = { "pactl", "set-sink-volume", "0", "-5%",     NULL };
+//static const char *mutevol[]  = { "pactl", "set-sink-mute",   "0", "toggle",  NULL };
 static const char *medplaypausecmd[] = { "playerctl", "play-pause", NULL };
 static const char *mednextcmd[] = { "playerctl", "next", NULL };
 static const char *medprevcmd[] = { "playerctl", "previous", NULL };
@@ -74,9 +74,13 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = web } },
-	{ 0, XF86XK_AudioRaiseVolume,              spawn,          {.v = upvol   } },
-	{ 0, XF86XK_AudioLowerVolume,              spawn,          {.v = downvol } },
-	{ 0, XF86XK_AudioMute,                     spawn,          {.v = mutevol } },
+	{ MODKEY,                       XK_w,      spawn,          SHCMD("$BROWSER") },
+	//{ 0, XF86XK_AudioRaiseVolume,              spawn,          {.v = upvol   } },
+	//{ 0, XF86XK_AudioLowerVolume,              spawn,          {.v = downvol } },
+	//{ 0, XF86XK_AudioMute,                     spawn,          {.v = mutevol } },
+	{ 0, XF86XK_AudioRaiseVolume,              spawn,          SHCMD("pactl set-sink-volume 0 +5% && pkill dwmblocks && sh -c 'dwmblocks &'") },
+	{ 0, XF86XK_AudioLowerVolume,              spawn,          SHCMD("pactl set-sink-volume 0 -5% && pkill dwmblocks && sh -c 'dwmblocks &'") },
+	{ 0, XF86XK_AudioMute,                     spawn,          SHCMD("pactl set-sink-mute 0 toggle && pkill dwmblocks && sh -c 'dwmblocks &'") },
 	{ 0, XF86XK_AudioPlay,                     spawn,          {.v = medplaypausecmd } },
 	{ 0, XF86XK_AudioNext,                     spawn,          {.v = mednextcmd } },
 	{ 0, XF86XK_AudioPrev,                     spawn,          {.v = medprevcmd } },
